@@ -73,7 +73,19 @@ def build_knowledge_base(reset=False):
         except Exception:
             pass
 
-    collection = client.get_or_create_collection(
+    # Avoid get_or_create_collection() because the deployed Chroma
+    # version can route that call through get_collection() and raise
+    # NotFoundError when the collection has not been created yet.
+    # Always recreate the collection during a deployment build.
+    # This avoids every get_collection()/get_or_create_collection()
+    # path, which is the source of the cloud NotFoundError.
+    try:
+        client.delete_collection(name=COLLECTION_NAME)
+        print("Existing knowledge collection deleted.")
+    except Exception:
+        pass
+
+    collection = client.create_collection(
         name=COLLECTION_NAME
     )
 
