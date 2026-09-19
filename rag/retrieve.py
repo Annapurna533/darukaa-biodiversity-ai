@@ -40,21 +40,116 @@ def _get_collection():
     if _model is None:
         _model = SentenceTransformer(EMBEDDING_MODEL)
 
-    if _client is None:
-        VECTORSTORE_DIR.mkdir(parents=True, exist_ok=True)
-        _client = chromadb.PersistentClient(path=str(VECTORSTORE_DIR))
-
     if _collection is None:
-        # The vectorstore is intentionally not committed to GitHub.
-        # On Streamlit Cloud, build it directly from the repository
-        # documents on first use. This completely avoids the fragile
-        # get_collection()/get_or_create_collection() lookup path.
-        from rag.ingest import build_knowledge_base
+        # CLOUD-SAFE MODE:
+        # Do not use PersistentClient or get_collection() at all.
+        # Streamlit Cloud may start with no persisted Chroma collection.
+        # Build a temporary in-memory Chroma collection directly from
+        # the repository documents for this app process.
+
+        import json
+
+        documents_dir = PROJECT_ROOT / "rag" / "documents"
+        metadata_file = PROJECT_ROOT / "rag" / "metadata" / "sources.json"
+
+        with open(metadata_file, "r", encoding="utf-8") as f:
+            source_records = json.load(f)
+
+        source_lookup = {
+            item["source_id"]: item
+            for item in source_records
+        }
+
+        source_map = {
+            "soil_biodiversity.txt": "FAO_SOIL_BIODIVERSITY",
+            "land_use_impact.txt": "FAO_AGROFORESTRY",
+            "biodiversity_indicators.txt": "IPCC_AR6_WGII",
+            "climate_biodiversity.txt": "IPCC_AR6_WGII",
+            "human_impact.txt": "IPCC_AR6_WGII",
+        }
+
+        documents = []
+        metadatas = []
+        ids = []
+
+        for file_path in sorted(documents_dir.rglob("*.txt")):
+            text = file_path.read_text(encoding="utf-8").strip()
+            if not text:
+                continue
+
+            chunks = [
+                p.strip()
+                for p in text.split("\n\n")
+                if p.strip() and len(p.split()) >= 8
+            ]
+
+            category = file_path.parent.name
+            source_id = source_map.get(
+                file_path.name,
+                "LOCAL_KNOWLEDGE_DOCUMENT"
+            )
+            source = source_lookup.get(source_id, {})
+
+            for chunk_number, chunk in enumerate(chunks):
+                documents.append(chunk)
+                metadatas.append({
+                    "source_id": source_id,
+                    "source": source.get(
+                        "title",
+                        file_path.name
+                    ),
+                    "organization": source.get(
+                        "organization",
+                        "Darukaa.Earth Knowledge Base"
+                    ),
+                    "year": str(source.get("year", "")),
+                    "topic": source.get(
+                        "topic",
+                        category
+                    ),
+                    "source_type": source.get(
+                        "source_type",
+                        "knowledge_document"
+                    ),
+                    "url": source.get("url", ""),
+                    "category": category,
+                    "document": file_path.name,
+                    "chunk_number": str(chunk_number),
+                })
+                ids.append(
+                    f"{file_path.stem}_{chunk_number}"
+                )
+
+        if not documents:
+            raise RuntimeError(
+                "No RAG knowledge documents were found."
+            )
 
         print(
-            "Building the scientific knowledge base for this deployment..."
+            f"Building in-memory RAG index: "
+            f"{len(documents)} chunks"
         )
-        _collection = build_knowledge_base(reset=True)
+
+        embeddings = _model.encode(
+            documents,
+            show_progress_bar=False
+        ).tolist()
+
+        # Fresh in-memory Chroma client. No persistent collection lookup.
+        _client = chromadb.Client()
+
+        _collection = _client.create_collection(
+            name=COLLECTION_NAME
+        )
+
+        _collection.add(
+            ids=ids,
+            documents=documents,
+            embeddings=embeddings,
+            metadatas=metadatas
+        )
+
+        print("In-memory RAG index ready.")
 
     return _collection
 
