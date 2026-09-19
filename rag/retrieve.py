@@ -37,40 +37,43 @@ def _get_collection():
     global _client
     global _collection
 
-
     if _model is None:
-
         _model = SentenceTransformer(
             EMBEDDING_MODEL
         )
 
-
     if _client is None:
-
-        _client = chromadb.PersistentClient(
-            path=str(
-                VECTORSTORE_DIR
-            )
+        VECTORSTORE_DIR.mkdir(
+            parents=True,
+            exist_ok=True
         )
 
+        _client = chromadb.PersistentClient(
+            path=str(VECTORSTORE_DIR)
+        )
 
     if _collection is None:
 
+        # IMPORTANT FOR STREAMLIT CLOUD:
+        # Do not use get_collection() here because the vectorstore
+        # is intentionally not committed to GitHub. Create the
+        # collection if it does not exist.
+        _collection = _client.get_or_create_collection(
+            name=COLLECTION_NAME
+        )
+
+        # A newly created collection has zero documents.
+        # Build the scientific knowledge base from the repository
+        # documents on first use.
         try:
-            _collection = _client.get_collection(
-                name=COLLECTION_NAME
-            )
+            collection_count = _collection.count()
+        except Exception:
+            collection_count = 0
 
-        except Exception as exc:
-
-            # Streamlit Cloud does not contain the local Chroma
-            # vectorstore because it is intentionally gitignored.
-            # Build it from the repository knowledge documents.
-            if "does not exist" not in str(exc).lower():
-                raise
+        if collection_count == 0:
 
             print(
-                "Chroma collection not found. "
+                "Chroma collection is empty. "
                 "Building the scientific knowledge base..."
             )
 
@@ -79,7 +82,6 @@ def _get_collection():
             _collection = build_knowledge_base(
                 reset=False
             )
-
 
     return _collection
 
