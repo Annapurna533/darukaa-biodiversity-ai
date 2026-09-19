@@ -56,9 +56,29 @@ def _get_collection():
 
     if _collection is None:
 
-        _collection = _client.get_collection(
-            name=COLLECTION_NAME
-        )
+        try:
+            _collection = _client.get_collection(
+                name=COLLECTION_NAME
+            )
+
+        except Exception as exc:
+
+            # Streamlit Cloud does not contain the local Chroma
+            # vectorstore because it is intentionally gitignored.
+            # Build it from the repository knowledge documents.
+            if "does not exist" not in str(exc).lower():
+                raise
+
+            print(
+                "Chroma collection not found. "
+                "Building the scientific knowledge base..."
+            )
+
+            from rag.ingest import build_knowledge_base
+
+            _collection = build_knowledge_base(
+                reset=False
+            )
 
 
     return _collection
