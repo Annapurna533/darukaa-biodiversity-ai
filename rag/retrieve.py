@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+import numpy as np
 
 import chromadb
 from sentence_transformers import SentenceTransformer
@@ -31,22 +32,65 @@ _collection = None
 # LAZY INITIALIZATION
 # ============================================================
 
+
+class _InMemoryCollection:
+    """Minimal Chroma-compatible query interface using NumPy cosine similarity."""
+
+    def __init__(self, model, documents, metadatas, ids):
+        self.model = model
+        self.documents = documents
+        self.metadatas = metadatas
+        self.ids = ids
+        self.embeddings = np.asarray(
+            model.encode(documents, show_progress_bar=False),
+            dtype=np.float32
+        )
+        norms = np.linalg.norm(self.embeddings, axis=1, keepdims=True)
+        self.embeddings = self.embeddings / np.maximum(norms, 1e-12)
+
+    def query(self, query_texts, n_results=5, include=None):
+        query_embedding = np.asarray(
+            self.model.encode(
+                [query_texts[0]],
+                show_progress_bar=False
+            )[0],
+            dtype=np.float32
+        )
+        query_embedding /= max(
+            float(np.linalg.norm(query_embedding)),
+            1e-12
+        )
+
+        similarities = self.embeddings @ query_embedding
+        order = np.argsort(-similarities)[:max(1, n_results)]
+
+        docs = [self.documents[i] for i in order]
+        metas = [self.metadatas[i] for i in order]
+        ids = [self.ids[i] for i in order]
+
+        # Chroma distances are approximately 1 - cosine similarity
+        distances = [
+            float(1.0 - similarities[i])
+            for i in order
+        ]
+
+        return {
+            "ids": [ids],
+            "documents": [docs],
+            "metadatas": [metas],
+            "distances": [distances],
+        }
+
+
 def _get_collection():
 
     global _model
-    global _client
     global _collection
 
     if _model is None:
         _model = SentenceTransformer(EMBEDDING_MODEL)
 
     if _collection is None:
-        # CLOUD-SAFE MODE:
-        # Do not use PersistentClient or get_collection() at all.
-        # Streamlit Cloud may start with no persisted Chroma collection.
-        # Build a temporary in-memory Chroma collection directly from
-        # the repository documents for this app process.
-
         import json
 
         documents_dir = PROJECT_ROOT / "rag" / "documents"
@@ -73,14 +117,18 @@ def _get_collection():
         ids = []
 
         for file_path in sorted(documents_dir.rglob("*.txt")):
-            text = file_path.read_text(encoding="utf-8").strip()
+            text = file_path.read_text(
+                encoding="utf-8"
+            ).strip()
+
             if not text:
                 continue
 
             chunks = [
-                p.strip()
-                for p in text.split("\n\n")
-                if p.strip() and len(p.split()) >= 8
+                paragraph.strip()
+                for paragraph in text.split("\n\n")
+                if paragraph.strip()
+                and len(paragraph.split()) >= 8
             ]
 
             category = file_path.parent.name
@@ -88,7 +136,10 @@ def _get_collection():
                 file_path.name,
                 "LOCAL_KNOWLEDGE_DOCUMENT"
             )
-            source = source_lookup.get(source_id, {})
+            source = source_lookup.get(
+                source_id,
+                {}
+            )
 
             for chunk_number, chunk in enumerate(chunks):
                 documents.append(chunk)
@@ -102,7 +153,9 @@ def _get_collection():
                         "organization",
                         "Darukaa.Earth Knowledge Base"
                     ),
-                    "year": str(source.get("year", "")),
+                    "year": str(
+                        source.get("year", "")
+                    ),
                     "topic": source.get(
                         "topic",
                         category
@@ -130,23 +183,13 @@ def _get_collection():
             f"{len(documents)} chunks"
         )
 
-        embeddings = _model.encode(
+        # Pure NumPy retrieval — NO Chroma client, collection,
+        # PersistentClient, get_collection, or get_or_create_collection.
+        _collection = _InMemoryCollection(
+            _model,
             documents,
-            show_progress_bar=False
-        ).tolist()
-
-        # Fresh in-memory Chroma client. No persistent collection lookup.
-        _client = chromadb.Client()
-
-        _collection = _client.create_collection(
-            name=COLLECTION_NAME
-        )
-
-        _collection.add(
-            ids=ids,
-            documents=documents,
-            embeddings=embeddings,
-            metadatas=metadatas
+            metadatas,
+            ids
         )
 
         print("In-memory RAG index ready.")
