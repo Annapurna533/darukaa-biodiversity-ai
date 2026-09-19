@@ -38,50 +38,62 @@ def _get_collection():
     global _collection
 
     if _model is None:
-        _model = SentenceTransformer(
-            EMBEDDING_MODEL
-        )
+        _model = SentenceTransformer(EMBEDDING_MODEL)
 
     if _client is None:
-        VECTORSTORE_DIR.mkdir(
-            parents=True,
-            exist_ok=True
-        )
-
-        _client = chromadb.PersistentClient(
-            path=str(VECTORSTORE_DIR)
-        )
+        VECTORSTORE_DIR.mkdir(parents=True, exist_ok=True)
+        _client = chromadb.PersistentClient(path=str(VECTORSTORE_DIR))
 
     if _collection is None:
 
-        # IMPORTANT FOR STREAMLIT CLOUD:
-        # Do not use get_collection() here because the vectorstore
-        # is intentionally not committed to GitHub. Create the
-        # collection if it does not exist.
-        _collection = _client.get_or_create_collection(
-            name=COLLECTION_NAME
-        )
+        # Streamlit Cloud does not contain the local Chroma vectorstore
+        # because rag/vectorstore/ is intentionally gitignored.
+        # Build the knowledge base FIRST when the collection is missing.
+        #
+        # We intentionally do NOT call get_collection() or
+        # get_or_create_collection() here because some Chroma versions
+        # route those calls through an internal get_collection() lookup
+        # and can raise NotFoundError before our fallback runs.
 
-        # A newly created collection has zero documents.
-        # Build the scientific knowledge base from the repository
-        # documents on first use.
+        from rag.ingest import build_knowledge_base
+
         try:
-            collection_count = _collection.count()
+            # Check whether the collection is already present.
+            existing = _client.list_collections()
+            existing_names = {
+                item.name if hasattr(item, "name") else str(item)
+                for item in existing
+            }
         except Exception:
-            collection_count = 0
+            existing_names = set()
 
-        if collection_count == 0:
-
+        if COLLECTION_NAME not in existing_names:
             print(
-                "Chroma collection is empty. "
+                "Chroma collection is missing. "
                 "Building the scientific knowledge base..."
             )
-
-            from rag.ingest import build_knowledge_base
-
-            _collection = build_knowledge_base(
-                reset=False
+            _collection = build_knowledge_base(reset=False)
+        else:
+            _collection = _client.get_collection(
+                name=COLLECTION_NAME
             )
+
+        # Safety check: if the collection exists but is empty,
+        # populate it from the repository documents.
+        try:
+            if _collection.count() == 0:
+                print(
+                    "Chroma collection is empty. "
+                    "Building the scientific knowledge base..."
+                )
+                _collection = build_knowledge_base(reset=False)
+        except Exception:
+            # If an unusual Chroma state prevents count(), rebuild.
+            print(
+                "Chroma collection could not be inspected. "
+                "Rebuilding the scientific knowledge base..."
+            )
+            _collection = build_knowledge_base(reset=False)
 
     return _collection
 
