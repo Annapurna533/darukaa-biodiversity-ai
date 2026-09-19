@@ -1,0 +1,9 @@
+streamlit
+chromadb
+sentence-transformers
+torch
+torchvision
+numpy
+pandas
+scikit-learn
+matplotlib
