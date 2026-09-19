@@ -1,0 +1,43 @@
+CLIMATE, WATER AVAILABILITY AND BIODIVERSITY
+
+Climate conditions influence ecosystems, biodiversity and agricultural systems.
+
+Important environmental variables include temperature, rainfall, drought conditions and water availability. Their effects depend on the characteristics of individual ecosystems and species.
+
+Low rainfall can reduce water availability and contribute to vegetation stress. The ecological consequences depend on soil properties, seasonal rainfall patterns, groundwater availability, irrigation, temperature and the adaptation of local species.
+
+Climate change can affect ecosystems through changes in temperature, precipitation patterns and extreme events. IPCC Working Group II assesses climate impacts, vulnerabilities and adaptation options for ecosystems, biodiversity and human communities.
+
+Biodiversity and ecosystem resilience are closely connected to climate-resilient development. Maintaining ecosystem functions can contribute to adaptation, while environmental degradation can increase vulnerability.
+
+CLIMATE RELATIONSHIPS
+
+Low rainfall -> reduced water availability
+Low rainfall -> vegetation stress
+High temperature -> increased evaporative demand
+Climate extremes -> ecosystem stress
+Climate change -> biodiversity and ecosystem impacts
+
+MULTI-METRIC CONNECTIONS
+
+Low rainfall + low SOC:
+Soil organic matter management may be relevant to soil functioning and water-related properties, but local soil and climate conditions must be assessed.
+
+Low rainfall + monoculture:
+Crop diversification or agroforestry may be considered where locally suitable, while accounting for competition for water.
+
+Low rainfall + biodiversity pressure:
+Native vegetation and habitat management should prioritize species and designs appropriate to local water availability.
+
+Climate information should be combined with soil, land-use and biodiversity information rather than treated as an isolated variable.
+
+SOURCE
+
+Intergovernmental Panel on Climate Change (IPCC).
+Climate Change 2022: Impacts, Adaptation and Vulnerability.
+Sixth Assessment Report, Working Group II.
+https://www.ipcc.ch/report/ar6/wg2/
+
+Food and Agriculture Organization of the United Nations (FAO).
+Agroforestry.
+https://www.fao.org/agroforestry/en

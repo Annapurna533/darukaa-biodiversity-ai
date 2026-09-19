@@ -1,0 +1,65 @@
+[
+  {
+    "source_id": "FAO_SOIL_BIODIVERSITY",
+    "title": "The State of Knowledge of Soil Biodiversity",
+    "organization": "Food and Agriculture Organization of the United Nations",
+    "year": 2020,
+    "topic": "soil_biodiversity",
+    "source_type": "technical_report",
+    "url": "https://www.fao.org/interactive/soil-biodiversity/en/"
+  },
+  {
+    "source_id": "FAO_SOIL_ORGANIC_CARBON",
+    "title": "Soil Organic Carbon",
+    "organization": "Food and Agriculture Organization of the United Nations",
+    "year": "n.d.",
+    "topic": "soil_health",
+    "source_type": "technical_resource",
+    "url": "https://www.fao.org/global-soil-partnership/programmes/recsoil/soil-organic-carbon/en/"
+  },
+  {
+    "source_id": "FAO_SOIL_BIODIVERSITY_MANAGEMENT",
+    "title": "Soil Biodiversity",
+    "organization": "Food and Agriculture Organization of the United Nations",
+    "year": "n.d.",
+    "topic": "soil_biodiversity",
+    "source_type": "technical_resource",
+    "url": "https://www.fao.org/agriculture/crops/thematic-sitemap/theme/spi/scpi-home/managing-ecosystems/soil-biodiversity/en/"
+  },
+  {
+    "source_id": "FAO_AGROFORESTRY",
+    "title": "Agroforestry",
+    "organization": "Food and Agriculture Organization of the United Nations",
+    "year": "n.d.",
+    "topic": "agroforestry",
+    "source_type": "technical_resource",
+    "url": "https://www.fao.org/americas/priorities/agricultura-sostenible/agrofesteria/4.-restoration-is-also-production/en/"
+  },
+  {
+    "source_id": "FAO_AGROFORESTRY_FAQ",
+    "title": "Frequently Asked Questions About Agroforestry",
+    "organization": "Food and Agriculture Organization of the United Nations",
+    "year": "n.d.",
+    "topic": "agroforestry",
+    "source_type": "technical_resource",
+    "url": "https://www.fao.org/agroforestry/about-agroforestry/faqs/"
+  },
+  {
+    "source_id": "FAO_SOIL_CARBON",
+    "title": "Soil Carbon Sequestration",
+    "organization": "Food and Agriculture Organization of the United Nations",
+    "year": "n.d.",
+    "topic": "soil_carbon",
+    "source_type": "technical_resource",
+    "url": "https://www.fao.org/soils-portal/soil-management/soil-carbon-sequestration/en/"
+  },
+  {
+    "source_id": "IPCC_AR6_WGII",
+    "title": "Climate Change 2022: Impacts, Adaptation and Vulnerability",
+    "organization": "Intergovernmental Panel on Climate Change",
+    "year": 2022,
+    "topic": "climate_biodiversity",
+    "source_type": "assessment_report",
+    "url": "https://www.ipcc.ch/report/ar6/wg2/"
+  }
+]

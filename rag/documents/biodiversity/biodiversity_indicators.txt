@@ -1,0 +1,42 @@
+BIODIVERSITY INDICATORS AND HABITAT DIVERSITY
+
+Biodiversity describes variation in living organisms and ecological systems. Biodiversity assessment can consider species, habitats, ecological communities and ecosystem functions.
+
+Species richness is a simple biodiversity indicator representing the number of different species observed in a defined area or sampling unit. It is useful for monitoring change but does not capture all dimensions of biodiversity.
+
+Habitat diversity describes the variety of habitat types or structural conditions available within a landscape. Habitat diversity can influence the range of ecological niches and resources available to species.
+
+Connectivity is another important landscape dimension. Fragmentation can separate suitable habitat into smaller or more isolated patches. Reduced connectivity can affect movement between habitat patches and can restrict access to resources or breeding areas for some organisms.
+
+Biodiversity indicators should be interpreted together with environmental context. A single indicator should not normally be used to describe the complete ecological condition of a landscape.
+
+IMPORTANT METRICS
+
+Species richness
+Habitat diversity
+Habitat connectivity
+Habitat fragmentation
+Vegetation diversity
+Presence or abundance of indicator species
+
+MULTI-METRIC REASONING
+
+Low rainfall -> water stress -> vegetation stress -> potential pressure on species dependent on vegetation and water.
+
+Monoculture -> reduced vegetation diversity -> potentially lower habitat/resource diversity.
+
+Deforestation -> habitat loss -> fragmentation -> reduced connectivity -> potential biodiversity pressure.
+
+Pollution -> organism stress -> soil or water quality pressure -> potential biodiversity effects.
+
+Soil biodiversity is also part of the broader biodiversity system and should be considered when evaluating soil-health interventions.
+
+SOURCE
+
+Food and Agriculture Organization of the United Nations (FAO).
+The State of Knowledge of Soil Biodiversity, 2020.
+https://www.fao.org/interactive/soil-biodiversity/en/
+
+Intergovernmental Panel on Climate Change (IPCC).
+Climate Change 2022: Impacts, Adaptation and Vulnerability.
+https://www.ipcc.ch/report/ar6/wg2/

@@ -1,0 +1,46 @@
+HUMAN PRESSURES: DEFORESTATION AND POLLUTION
+
+Human activities can alter ecosystems through land conversion, deforestation, pollution, intensive land management and other pressures.
+
+Deforestation can result in habitat loss and can contribute to habitat fragmentation. When natural habitat is converted or divided, species may lose resources or become separated from other suitable habitat.
+
+Pollution can affect soil, freshwater and organisms. The type and severity of effects depend on the pollutant, concentration, exposure pathway, ecosystem and duration of exposure.
+
+Unsustainable agricultural practices can also influence soil and biodiversity. FAO identifies concerns associated with practices that cause organic matter loss, erosion, nutrient depletion, pollution, biodiversity loss and disturbance of soil biological processes.
+
+Human-pressure indicators should therefore be evaluated together with environmental conditions.
+
+DEFORESTATION RELATIONSHIPS
+
+Deforestation -> habitat loss
+Deforestation -> habitat fragmentation
+Habitat fragmentation -> reduced connectivity
+Reduced connectivity -> potential restriction of species movement
+Habitat loss + fragmentation -> biodiversity pressure
+
+POLLUTION RELATIONSHIPS
+
+Pollution -> organism stress
+Pollution -> soil/water quality pressure
+Soil/water quality pressure -> potential biodiversity effects
+
+MULTI-METRIC CONNECTIONS
+
+Deforestation + habitat fragmentation:
+Prioritize retention or restoration of connected native vegetation where ecologically appropriate.
+
+Pollution + soil degradation:
+Investigate the pollutant source and affected environmental compartment before selecting an intervention.
+
+Deforestation + low rainfall:
+Restoration strategies should consider water availability and locally appropriate native vegetation.
+
+SOURCE
+
+Food and Agriculture Organization of the United Nations (FAO).
+Soil Biodiversity and Soil Ecosystem Services.
+https://www.fao.org/agriculture/crops/thematic-sitemap/theme/spi/soil-biodiversity/soil-ecosystems-services/en/
+
+Intergovernmental Panel on Climate Change (IPCC).
+Climate Change 2022: Impacts, Adaptation and Vulnerability.
+https://www.ipcc.ch/report/ar6/wg2/

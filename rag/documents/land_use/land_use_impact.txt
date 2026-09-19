@@ -1,0 +1,44 @@
+LAND USE, MONOCULTURE, INTERCROPPING AND HABITAT STRUCTURE
+
+Land-use decisions influence habitat structure, ecological connectivity, resource availability and biodiversity.
+
+Monoculture systems contain a relatively narrow range of cultivated plant diversity compared with diversified farming systems. Reduced vegetation diversity can reduce the range of habitats and resources available to organisms associated with agricultural landscapes.
+
+Crop diversification and integrated farming approaches can introduce additional vegetation types, resource availability and structural variation. Intercropping is one form of crop diversification in which multiple crops are grown together or in spatial association.
+
+Intercropping should not automatically be treated as beneficial in every situation. Outcomes depend on crop combinations, climate, soil, management, competition for water and nutrients, and the surrounding landscape.
+
+Agroforestry integrates trees with crops and/or livestock. FAO describes agroforestry as a multifunctional land-management approach that can contribute to soil health, water management, biodiversity and climate adaptation.
+
+HABITAT AND LAND-USE RELATIONSHIPS
+
+Monoculture -> lower crop diversity
+Lower vegetation diversity -> potentially lower habitat/resource diversity
+Diversified farming -> increased structural and resource diversity
+Agroforestry -> trees + crops/livestock
+Agroforestry -> soil-health functions
+Agroforestry -> water-management functions
+Agroforestry -> biodiversity benefits
+
+MULTI-METRIC CONNECTIONS
+
+Monoculture + low rainfall:
+A diversification strategy should consider water competition and local crop suitability rather than simply adding more species.
+
+Monoculture + low SOC:
+Crop diversification and organic-matter management may address both land-use diversity and soil-health dimensions.
+
+Monoculture + habitat fragmentation:
+Diversified vegetation and connected habitat elements may help address both habitat diversity and landscape connectivity.
+
+SOURCE
+
+Food and Agriculture Organization of the United Nations (FAO).
+Agroforestry resources.
+https://www.fao.org/agroforestry/en
+
+FAO Agroforestry FAQ:
+https://www.fao.org/agroforestry/about-agroforestry/faqs/
+
+FAO Agroforestry and Soil Health review:
+https://www.fao.org/agroecology/new-knowledge-module/publications/detail/agroforestry-and-soil-health--a-review-of-impacts-and-potential-for-sustainable-agriculture/en

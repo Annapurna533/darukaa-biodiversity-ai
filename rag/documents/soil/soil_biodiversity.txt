@@ -1,0 +1,38 @@
+SOIL HEALTH, SOIL ORGANIC CARBON AND SOIL BIODIVERSITY
+
+Soil biodiversity refers to the variety of organisms living below the ground, including microorganisms, fungi, invertebrates and other soil organisms. FAO identifies soil biodiversity as important for many ecosystem functions and services.
+
+Soil organisms contribute to nutrient cycling, decomposition of organic matter, soil formation, water-related functions, carbon processes, plant growth and biological regulation of pests and diseases.
+
+Soil organic carbon (SOC) is an important component of soil health. Organic matter and carbon support biological activity and contribute to physical and chemical soil functions. Management practices that maintain or increase organic matter can therefore influence several soil-health dimensions simultaneously.
+
+Low soil organic carbon can indicate reduced organic matter availability and may be associated with weaker soil functions. However, SOC interpretation should consider soil type, climate, land use, depth and local reference conditions rather than relying on a universal threshold.
+
+Practices that add or retain plant residues and organic inputs can support soil biological activity. Cover crops, crop diversification, reduced soil disturbance and agroforestry may contribute to improved soil conditions, but their effects depend on local management and environmental conditions.
+
+SOIL-BIODIVERSITY RELATIONSHIPS
+
+Soil biodiversity -> nutrient cycling
+Soil biodiversity -> decomposition
+Soil biodiversity -> soil structure and functioning
+Soil biodiversity -> water-related ecosystem functions
+Soil biodiversity -> plant productivity
+Soil organic matter -> biological activity
+Soil organic carbon -> soil function and carbon storage
+
+MULTI-METRIC CONNECTIONS
+
+Low SOC combined with low rainfall can create interacting pressures because soil organic matter is relevant to soil functioning while water availability constrains plant and ecosystem processes.
+
+Low SOC combined with monoculture can indicate simultaneous pressure on soil biological diversity and above-ground habitat diversity.
+
+Agroforestry and crop diversification can potentially address soil, biodiversity and climate-related dimensions simultaneously, although site-specific assessment is required.
+
+SOURCE
+
+Food and Agriculture Organization of the United Nations (FAO).
+The State of Knowledge of Soil Biodiversity, 2020.
+https://www.fao.org/interactive/soil-biodiversity/en/
+
+Additional FAO soil-biodiversity resources:
+https://www.fao.org/agriculture/crops/thematic-sitemap/theme/spi/soil-biodiversity/soil-ecosystems-services/en/
